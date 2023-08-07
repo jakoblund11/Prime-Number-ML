@@ -46,10 +46,10 @@ with open('Primes_true_false.txt', 'r') as f:
 X_train, X_test, y_train, y_test = train_test_split(number_line.reshape(-1, 1), true_false, train_size=0.8,
                                                     test_size=0.2, random_state=1, shuffle=True)
 
-clf = LogisticRegression().fit(X_train, y_train) # Accuracy of 0.921845
+#clf = LogisticRegression().fit(X_train, y_train) # Accuracy of 0.921845
 #clf = LinearRegression().fit(X_train, y_train) # Accuracy of 0.0005095
 #clf = KernelRidge().fit(X_train, y_train) # Requires 4.66 TiB RAM
-#clf = MLPClassifier(solver='adam', alpha=1e-5, hidden_layer_sizes=(10, 5, 2)).fit(X_train, y_train)
+clf = MLPClassifier(solver='adam', alpha=1e-5, hidden_layer_sizes=(10, 5, 2)).fit(X_train, y_train)
 
 y_pred = clf.predict(X_test)
 
