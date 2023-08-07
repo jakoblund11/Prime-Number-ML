@@ -23,7 +23,7 @@ def prime_range(start, end):
 
 
 first_num = 2
-last_num = 100
+last_num = 10000
 
 number_line = np.array([x for x in range(first_num, last_num + 1)])
 
