@@ -23,7 +23,7 @@ def prime_range(start, end):
 
 
 first_num = 2
-last_num = 100
+last_num = 1000000
 
 number_line = np.array([x for x in range(first_num, last_num + 1)])
 
@@ -42,9 +42,9 @@ with open('Primes_true_false.txt', 'r') as f:
     pass
 
 
-
-X_train, X_test, y_train, y_test = train_test_split(number_line.reshape(-1, 1), true_false, train_size=0.8,
-                                                    test_size=0.2, random_state=1, shuffle=True)
+train_size = 0.5
+X_train, X_test, y_train, y_test = train_test_split(number_line.reshape(-1, 1), true_false, train_size=train_size,
+                                                    test_size=1-train_size, shuffle=False)
 
 #clf = LogisticRegression().fit(X_train, y_train) # Accuracy of 0.921845
 #clf = LinearRegression().fit(X_train, y_train) # Accuracy of 0.0005095
@@ -59,6 +59,9 @@ print("Accuracy:", clf.score(X_test, y_test))
 wrong_indices = [i for i in range(len(y_test)) if y_test[i] != y_pred[i]]
 
 # Print the true labels and predicted labels for the data that the model got wrong
-print("Numbers:", [X_test[i][0] for i in wrong_indices])
-print("True labels:", [y_test[i] for i in wrong_indices])
-print("Predicted labels:", [y_pred[i] for i in wrong_indices])
+print("Wrong numbers:", [X_test[i][0] for i in wrong_indices])
+#print("True labels:", [y_test[i] for i in wrong_indices])
+print("Number of numbers being falsely labeled as false:", sum([y_pred[i] for i in wrong_indices]))
+print("This means the model always predicts a number as a non-prime")
+print("Number of wrong predictions:", len(wrong_indices))
+print("Number of primes:", len(prime_number_line))
