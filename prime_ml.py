@@ -44,7 +44,7 @@ with open('Primes_true_false.txt', 'r') as f:
 
 train_size = 0.5
 X_train, X_test, y_train, y_test = train_test_split(number_line.reshape(-1, 1), true_false, train_size=train_size,
-                                                    test_size=1-train_size, shuffle=False)
+                                                    test_size=1 - train_size, shuffle=False)
 
 #clf = LogisticRegression().fit(X_train, y_train) # Accuracy of 0.921845
 #clf = LinearRegression().fit(X_train, y_train) # Accuracy of 0.0005095
