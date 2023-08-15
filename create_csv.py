@@ -14,10 +14,21 @@ def digit_sum(n):
     return sum(int(digit) for digit in str(n))
 
 
+def is_fibonacci(n):
+    phi = 0.5 + 0.5 * math.sqrt(5.0)
+    a = phi * n
+    return 1 if n == 0 or abs(round(a) - a) < 1.0 / n else 0
+
+
+def ends_with_five(n):
+    if str(n)[-1] == '5':
+        return 1
+    return 0
+
+
 with open('Data.csv', 'w') as f:
     writer = csv.writer(f)
-    writer.writerow(['Number', 'Modulo 2', 'Modulo 3', 'Modulo 5', 'Modulo 7', 'Modulo 11', 'Modulo 13',
-                     'Sum of digits', 'Prime'])
-    for num in range(2, 1000000 + 1):
-        writer.writerow([num, num % 2, num % 3, num % 5, num % 7, num % 11, num % 13, digit_sum(num), is_prime(num)])
+    writer.writerow(['Number', 'Modulo 3', 'Modulo 5', 'Modulo 7', 'Ends with a five', 'Sum of digits', 'Prime'])
+    for num in range(3, 1000000 + 1, 2):
+        writer.writerow([num, num % 3, num % 5, num % 7, ends_with_five(num), digit_sum(num), is_prime(num)])
 
