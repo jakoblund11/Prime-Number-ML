@@ -17,7 +17,6 @@ import pandas as pd
 data = pd.read_csv('data.csv', nrows=1000000)
 
 # Extract the features and target variable from the DataFrame
-#X = data.drop(['Modulo 2', 'Modulo 3', 'Modulo 5', 'Modulo 7', 'Modulo 11', 'Modulo 13', 'Sum of digits', 'Prime'], axis=1)
 X = data.drop(['Sum of digits', 'Prime'], axis=1)
 y = data['Prime']
 
@@ -26,8 +25,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_size,
                                                     test_size=1 - train_size, shuffle=False)
 
 #clf = LinearSVC(max_iter=1000000000).fit(X_train, y_train) # Does not predict everything to be non-prime! That is a great start
-#clf = DecisionTreeClassifier().fit(X_train, y_train)
-clf = MLPClassifier(solver='adam', activation='relu', alpha=1e-5, hidden_layer_sizes=(150, 75, 25, 10, 5, 2)).fit(X_train, y_train)
+clf = DecisionTreeClassifier().fit(X_train, y_train)
+#clf = MLPClassifier(solver='adam', activation='relu', alpha=1e-5, hidden_layer_sizes=(25, 10, 5, 2)).fit(X_train, y_train)
 
 y_pred = clf.predict(X_test)
 
